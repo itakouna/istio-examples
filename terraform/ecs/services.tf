@@ -11,3 +11,17 @@ resource "aws_ecs_service" "bookings" {
     container_name   = "bookings"
   }
 }
+
+resource "aws_ecs_service" "movies" {
+  name            = "${var.name}-movies"
+  iam_role        = "${aws_iam_role.service.name}"
+  cluster         = "${aws_ecs_cluster.ecs.id}"
+  task_definition = "${aws_ecs_task_definition.movies.family}:${max("${aws_ecs_task_definition.movies.revision}", "${data.aws_ecs_task_definition.movies.revision}")}"
+  desired_count   = 2
+
+  load_balancer {
+    target_group_arn = "${aws_alb_target_group.ecs.arn}"
+    container_port   = 5001
+    container_name   = "movies"
+  }
+}

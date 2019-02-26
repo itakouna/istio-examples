@@ -1,11 +1,11 @@
 [
     {
-        "name": "bookings",
-        "image": "takouna/bookings",
+        "name": "movies",
+        "image": "takouna/movies",
         "essential": true,
         "portMappings": [
             {
-                "containerPort": 5003
+                "containerPort": 5001
             }
         ],
         "memory": 100,

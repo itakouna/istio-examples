@@ -10,6 +10,11 @@ with open("{}/movies.json".format(root_dir()), "r") as f:
     movies = json.load(f)
 
 
+@app.route("/health", methods=['GET'])
+def health():
+    return "I'm alive"
+
+
 @app.route("/", methods=['GET'])
 def hello():
     return nice_json({
@@ -19,6 +24,7 @@ def hello():
             "movie": "/movies/<id>"
         }
     })
+
 
 @app.route("/movies/<movieid>", methods=['GET'])
 def movie_info(movieid):
@@ -37,5 +43,4 @@ def movie_record():
 
 
 if __name__ == "__main__":
-    app.run(port=5001, debug=True)
-
+    app.run(host="0.0.0.0", port=5001, debug=True)
