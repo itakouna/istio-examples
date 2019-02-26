@@ -1,4 +1,4 @@
-from services import root_dir, nice_json
+from data.access import root_dir, nice_json
 from flask import Flask
 from werkzeug.exceptions import NotFound
 import json
