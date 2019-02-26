@@ -9,6 +9,9 @@ app = Flask(__name__)
 with open("{}/bookings.json".format(root_dir()), "r") as f:
     bookings = json.load(f)
 
+@app.route("/health", methods=['GET'])
+def health():
+    return "I'm alive"
 
 @app.route("/", methods=['GET'])
 def hello():
@@ -19,7 +22,6 @@ def hello():
             "booking": "/bookings/<username>"
         }
     })
-
 
 @app.route("/bookings", methods=['GET'])
 def booking_list():
@@ -34,5 +36,5 @@ def booking_record(username):
     return nice_json(bookings[username])
 
 if __name__ == "__main__":
-    app.run(port=5003, debug=True)
+    app.run(host="0.0.0.0", port=5003, debug=True)
 

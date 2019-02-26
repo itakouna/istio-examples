@@ -33,7 +33,7 @@ resource "aws_launch_configuration" "instance" {
   image_id             = "${data.aws_ami.ecs.id}"
   instance_type        = "${var.instance_type}"
   iam_instance_profile = "${aws_iam_instance_profile.instance.name}"
-  security_groups      = ["${aws_security_group.ecs.id}"]
+  security_groups      = ["${aws_security_group.instance.id}"]
   key_name             = "${var.instance_keypair != "" ? var.instance_keypair : element(concat(aws_key_pair.user.*.key_name, list("")), 0)}"
   user_data            = "${data.template_file.user_data.rendered}"
 
