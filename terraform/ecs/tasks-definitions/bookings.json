@@ -1,0 +1,14 @@
+[
+    {
+        "name": "bookings",
+        "image": "takouna/bookings",
+        "essential": true,
+        "portMappings": [
+            {
+                "containerPort": 5003
+            }
+        ],
+        "memory": 500,
+        "cpu": 10
+    }
+]
