@@ -21,7 +21,7 @@ data "aws_iam_policy_document" "service" {
 }
 
 resource "aws_iam_role" "instance" {
-  name               = "${var.name}-instance-role"
+  name               = "${var.name}-${var.environment}-instance-role"
   path               = "/"
   assume_role_policy = "${data.aws_iam_policy_document.instance.json}"
 }
@@ -32,12 +32,12 @@ resource "aws_iam_role_policy_attachment" "instance" {
 }
 
 resource "aws_iam_instance_profile" "instance" {
-  name = "${var.name}-instance-profile"
+  name = "${var.name}-${var.environment}"
   role = "${aws_iam_role.instance.id}"
 }
 
 resource "aws_iam_role" "service" {
-  name               = "${var.name}-service-role"
+  name               = "${var.name}-${var.environment}-service-role"
   path               = "/"
   assume_role_policy = "${data.aws_iam_policy_document.service.json}"
 }

@@ -1,17 +1,17 @@
 resource "aws_alb" "ecs" {
-  name            = "${var.name}-load-balancer"
-  security_groups = ["${aws_security_group.alb.id}"]
-  subnets         = ["${module.vpc.vpc_subnets}"]
+  name            = "${var.name}-${var.environment}"
+  security_groups = ["${var.aws_security_group_alb_id}"]
+  subnets         = ["${var.vpc_subnets}"]
 }
 
 resource "aws_alb_target_group" "ecs" {
-  depends_on = ["aws_alb.ecs"]
+  depends_on        = ["aws_alb.ecs"]
 
-  name     = "${var.name}-target-group"
+  name     = "${var.name}-${var.environment}"
   port     = "80"
   protocol = "HTTP"
-  vpc_id   = "${module.vpc.vpc_id}"
-
+  vpc_id   = "${var.vpc_id}"
+  
   deregistration_delay = 180
 
   health_check {

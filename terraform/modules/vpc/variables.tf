@@ -3,6 +3,25 @@ variable "region" {
   type        = "string"
   default     = "eu-central-1"
 }
+variable "name" {
+  description = "The name of ecs cluster"
+  type        = "string"
+  default     = "takouna"
+}
+variable "tags" {
+  description = "Tags of ecs cluster"
+  type        = "map"
+
+  default = {
+    "name" = "takouna"
+  }
+}
+
+variable "environment" {
+  description = "The name of ecs cluster"
+  type        = "string"
+  default     = "dev"
+}
 
 variable "cidr" {
   description = "The CIDR block for the VPC, e.g: 10.0.0.0/16"

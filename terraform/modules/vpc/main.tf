@@ -1,5 +1,37 @@
+data "aws_availability_zones" "available" {}
+
+module "vpc" {
+  source = "terraform-aws-modules/vpc/aws"
+
+  name = "${var.name}-${var.environment}"
+  cidr = "${var.cidr}"
+
+  azs = "${data.aws_availability_zones.available.names}"
+
+  private_subnets = [
+    "${lookup(var.private_subnets, "eu-central-1a")}",
+    "${lookup(var.private_subnets, "eu-central-1b")}",
+    "${lookup(var.private_subnets, "eu-central-1c")}",
+  ]
+
+  public_subnets = [
+    "${lookup(var.public_subnets, "eu-central-1a")}",
+    "${lookup(var.public_subnets, "eu-central-1b")}",
+    "${lookup(var.public_subnets, "eu-central-1c")}",
+  ]
+
+  enable_nat_gateway = false
+  enable_vpn_gateway = false
+
+  tags = {
+    Terraform   = "true"
+    Environment = "dev"
+  }
+}
+
+###aws_security_group####
 resource "aws_security_group" "alb" {
-  name        = "${var.name}-alb"
+  name        = "${var.name}-${var.environment}"
   description = "Security Group managed by Terraform"
   vpc_id      = "${module.vpc.vpc_id}"
   tags        = "${merge(var.tags, map("Name", format("%s-alb", var.name)))}"
@@ -10,7 +42,7 @@ resource "aws_security_group" "alb" {
 }
 
 resource "aws_security_group" "instance" {
-  name        = "${var.name}-instance"
+  name        = "${var.name}-${var.environment}-instance"
   description = "Security Group managed by Terraform"
   vpc_id      = "${module.vpc.vpc_id}"
   tags        = "${merge(var.tags, map("Name", format("%s-instance", var.name)))}"

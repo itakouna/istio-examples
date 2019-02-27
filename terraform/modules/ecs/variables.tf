@@ -1,9 +1,3 @@
-variable "name" {
-  description = "The name of ecs cluster"
-  type        = "string"
-  default     = "takouna-ecs"
-}
-
 variable "instance_keypair" {
   description = "The instance_keypair of ecs cluster by default create new key pair"
   type        = "string"
