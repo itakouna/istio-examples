@@ -1,17 +1,17 @@
 resource "aws_alb" "ecs" {
-  name            = "${var.name}-${var.environment}"
-  security_groups = ["${var.aws_security_group_alb_id}"]
+  name            = "${var.ecs_cluster_name}-${var.environment}"
+  security_groups = ["${var.security_group_alb_id}"]
   subnets         = ["${var.vpc_subnets}"]
 }
 
 resource "aws_alb_target_group" "ecs" {
-  depends_on        = ["aws_alb.ecs"]
+  depends_on = ["aws_alb.ecs"]
 
-  name     = "${var.name}-${var.environment}"
+  name     = "${var.ecs_cluster_name}-${var.environment}"
   port     = "80"
   protocol = "HTTP"
   vpc_id   = "${var.vpc_id}"
-  
+
   deregistration_delay = 180
 
   health_check {

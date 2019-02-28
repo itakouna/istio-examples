@@ -1,51 +1,44 @@
-variable "name" {
+variable "ecs_cluster_name" {
   description = "The name of ecs cluster"
   type        = "string"
-  default     = "takouna-ecs"
 }
 
 variable "environment" {
-  description = "The name of ecs cluster"
+  description = "The deployment environment name"
   type        = "string"
 }
 
 variable "service_port" {
-  description = "The name of ecs cluster"
+  description = "The port of service"
   type        = "string"
 }
+
 variable "service_name" {
-  description = "The name of ecs cluster"
+  description = "The name of service"
   type        = "string"
-  default     = "takouna-ecs"
 }
+
 variable "container_definitions" {
-  description = "The name of ecs cluster"
+  description = "The definitions of ecs container"
   type        = "string"
 }
 
 variable "vpc_id" {
-  description = "The name of ecs cluster"
+  description = "The id of vpc"
   type        = "string"
 }
 
-variable "aws_alb_target_group_arn" {
-  description = "The name of ecs cluster"
+variable "alb_target_group_arn" {
+  description = "ARN of ALB target group"
   type        = "string"
 }
-
-
-variable "aws_ecs_cluster_name" {
-  description = "The name of ecs cluster"
-  type        = "string"
-}
-
 
 variable "iam_service_role" {
-  description = "The name of ecs cluster"
+  description = "The iam ecs service role"
   type        = "string"
 }
 
-variable "aws_ecs_cluster_id" {
-  description = "The name of ecs cluster"
+variable "ecs_cluster_id" {
+  description = "The id of ecs cluster"
   type        = "string"
 }

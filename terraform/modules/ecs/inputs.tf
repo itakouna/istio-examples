@@ -1,33 +1,29 @@
-variable "name" {
+variable "ecs_cluster_name" {
   description = "The name of ecs cluster"
   type        = "string"
-  default     = "takouna-ecs"
 }
+
 variable "vpc_id" {
-  description = "The name of ecs cluster"
+  description = "The id of vpc"
   type        = "string"
 }
-
-
 
 variable "vpc_subnets" {
-  description = "The name of ecs cluster"
+  description = "The vpc_subnets of vpc"
   type        = "list"
 }
 
 variable "environment" {
-  description = "The name of ecs cluster"
-  type        = "string"
-  default     = "dev"
-}
-
-
-variable "aws_security_group_instance_id" {
-   description = "The name of ecs cluster"
+  description = "The deployment environment name"
   type        = "string"
 }
 
-variable "aws_security_group_alb_id" {
-   description = "The name of ecs cluster"
+variable "security_group_instance_id" {
+  description = "The id of security group for ECS instances"
+  type        = "string"
+}
+
+variable "security_group_alb_id" {
+  description = "The id of security group for ECS ALB"
   type        = "string"
 }

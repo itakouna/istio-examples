@@ -1,4 +1,4 @@
 module "staging-ecs" {
-  source             = "../../ecs"
-  environment        = "staging"
+  source      = "../../ecs"
+  environment = "staging"
 }

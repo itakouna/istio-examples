@@ -3,18 +3,16 @@ variable "region" {
   type        = "string"
   default     = "eu-central-1"
 }
+
 variable "name" {
   description = "The name of ecs cluster"
   type        = "string"
   default     = "takouna"
 }
+
 variable "tags" {
   description = "Tags of ecs cluster"
   type        = "map"
-
-  default = {
-    "name" = "takouna"
-  }
 }
 
 variable "environment" {
