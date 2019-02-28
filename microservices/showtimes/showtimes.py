@@ -34,4 +34,4 @@ def showtimes_record(date):
     return nice_json(showtimes[date])
 
 if __name__ == "__main__":
-   app.run(host="0.0.0.0", port=5002, debug=True)
+   app.run(host="0.0.0.0", port=8080, debug=True)

@@ -5,7 +5,7 @@
         "essential": true,
         "portMappings": [
             {
-                "containerPort": 5003
+                "containerPort": 8080
             }
         ],
         "memory": 100,
