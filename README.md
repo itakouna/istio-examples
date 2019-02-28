@@ -1,2 +1,1 @@
-# istio-examples
-based on refactored version of https://github.com/umermansoor/microservices
+# The repository includes a complete example of terraform ECS cluster provisioning and microservices deployment
