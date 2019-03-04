@@ -10,5 +10,23 @@
         ],
         "memory": 100,
         "cpu": 10
+    },
+    {
+        "image": "takouna/envoy",
+        "name": "envoy",
+        "portMappings": [
+            {
+                "hostPort": 80,
+                "protocol": "tcp",
+                "containerPort": 80
+            },
+            {
+                "hostPort": 8081,
+                "protocol": "tcp",
+                "containerPort": 8081
+            }
+        ],
+        "memory": 100,
+        "cpu": 10
     }
 ]

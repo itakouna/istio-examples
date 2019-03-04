@@ -10,6 +10,7 @@ resource "aws_alb_target_group" "ecs" {
   name     = "${var.ecs_cluster_name}-${var.environment}"
   port     = "80"
   protocol = "HTTP"
+  target_type = "${var.target_type}"
   vpc_id   = "${var.vpc_id}"
 
   deregistration_delay = 180

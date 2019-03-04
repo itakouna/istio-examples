@@ -42,3 +42,20 @@ variable "ecs_cluster_id" {
   description = "The id of ecs cluster"
   type        = "string"
 }
+
+variable "network_mode" {
+  type        = "string"
+}
+
+variable "security_group_instance_id" {
+  description = "The id of security group for ECS instances"
+  type        = "string"
+}
+
+variable "vpc_subnets" {
+  description = "The vpc_subnets of vpc"
+  type        = "list"
+}
+variable "compatibilities" {
+  type        = "string"
+}

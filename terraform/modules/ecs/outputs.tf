@@ -13,3 +13,7 @@ output "alb_target_group_arn" {
 output "ecs_cluster_id" {
   value = "${aws_ecs_cluster.ecs.id}"
 }
+
+output "alb_dns_name"{
+value = "${element(concat(aws_alb.ecs.*.dns_name, list("")), 0)}"
+}
