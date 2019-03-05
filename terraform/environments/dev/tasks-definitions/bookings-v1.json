@@ -1,0 +1,32 @@
+[
+    {
+        "name": "bookings-v1",
+        "image": "takouna/bookings-v1",
+        "essential": true,
+        "portMappings": [
+            {
+                "containerPort": 5003
+            }
+        ],
+        "memory": 100,
+        "cpu": 10
+    },
+    {
+        "image": "takouna/envoy",
+        "name": "envoy",
+        "portMappings": [
+            {
+                "hostPort": 8080,
+                "protocol": "tcp",
+                "containerPort": 8080
+            },
+            {
+                "hostPort": 8081,
+                "protocol": "tcp",
+                "containerPort": 8081
+            }
+        ],
+        "memory": 100,
+        "cpu": 10
+    }
+]

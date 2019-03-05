@@ -34,7 +34,7 @@ resource "aws_ecs_service" "service_bridge" {
   iam_role        = "${var.iam_service_role}"
   cluster         = "${var.ecs_cluster_id}"
   task_definition = "${aws_ecs_task_definition.task_bridge.family}:${max("${aws_ecs_task_definition.task_bridge.revision}", "${data.aws_ecs_task_definition.task_bridge_data.revision}")}"
-  desired_count   = 2
+  desired_count   = "${var.desired_task_count}"
 
   load_balancer {
     target_group_arn = "${var.alb_target_group_arn}"
@@ -48,7 +48,7 @@ resource "aws_ecs_service" "service_awsvpc" {
   name            = "${var.ecs_cluster_name}-${var.service_name}"
   cluster         = "${var.ecs_cluster_id}"
   task_definition = "${aws_ecs_task_definition.task_awsvpc.family}:${max("${aws_ecs_task_definition.task_awsvpc.revision}", "${data.aws_ecs_task_definition.task_awsvpc_data.revision}")}"
-  desired_count   = 2
+  desired_count   = "${var.desired_task_count}"
 network_configuration {
     security_groups = ["${var.security_group_instance_id}"]
     subnets         = ["${var.vpc_subnets}"]

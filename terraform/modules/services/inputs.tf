@@ -59,3 +59,7 @@ variable "vpc_subnets" {
 variable "compatibilities" {
   type        = "string"
 }
+
+variable "desired_task_count" {
+  type = "string"
+}
