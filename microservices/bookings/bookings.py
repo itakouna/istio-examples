@@ -1,12 +1,13 @@
 from data.access import root_dir, nice_json
 from flask import Flask
 import json
+import os
 from werkzeug.exceptions import NotFound
 
 
 app = Flask(__name__)
 
-service_version = "bookings-v1"
+service_version = "bookings-blue"
 
 with open("{}/bookings.json".format(root_dir()), "r") as f:
     bookings = json.load(f)
@@ -53,4 +54,5 @@ def booking_record(username):
 
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5003, debug=True)
+    port = os.getenv('SERVICE_PORT', 8080)
+    app.run(host="0.0.0.0", port=port, debug=True)

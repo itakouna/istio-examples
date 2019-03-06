@@ -63,3 +63,8 @@ variable "compatibilities" {
 variable "desired_task_count" {
   type = "string"
 }
+
+variable "scheduling_strategy"{
+  type = "string"
+  default = "REPLICA"
+}

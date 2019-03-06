@@ -31,3 +31,8 @@ variable "security_group_alb_id" {
 variable "target_type" {
   type = "string"
 }
+
+variable "health_path"{
+  type = "string"
+  default = "/"
+}

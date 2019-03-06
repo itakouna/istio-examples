@@ -104,6 +104,19 @@ resource "aws_security_group_rule" "instance_inbound_from_alb" {
   }
 }
 
+resource "aws_security_group_rule" "instance_inbound_local" {
+  type                     = "ingress"
+  from_port                = 0
+  to_port                  = 65535
+  protocol                 = "tcp"
+  security_group_id        = "${aws_security_group.instance.id}"
+  cidr_blocks       = ["127.0.0.1/32"]
+
+  lifecycle {
+    create_before_destroy = true
+  }
+}
+
 resource "aws_security_group_rule" "alb" {
   type              = "ingress"
   from_port         = 80
