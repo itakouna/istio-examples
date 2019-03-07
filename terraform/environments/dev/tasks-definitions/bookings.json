@@ -1,14 +1,14 @@
 [
     {
         "name": "bookings",
-        "image": "takouna/bookings",
-        "essential": true,
+        "image": "takouna/bookings:green",
+        "memory": 100,
+        "cpu": 10,
         "portMappings": [
             {
+                "protocol": "tcp",
                 "containerPort": 8080
             }
-        ],
-        "memory": 100,
-        "cpu": 10
+        ]
     }
 ]

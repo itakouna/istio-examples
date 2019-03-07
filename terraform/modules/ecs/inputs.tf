@@ -27,3 +27,12 @@ variable "security_group_alb_id" {
   description = "The id of security group for ECS ALB"
   type        = "string"
 }
+
+variable "target_type" {
+  type = "string"
+}
+
+variable "health_path"{
+  type = "string"
+  default = "/"
+}
