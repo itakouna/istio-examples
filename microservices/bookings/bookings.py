@@ -7,7 +7,7 @@ from werkzeug.exceptions import NotFound
 
 app = Flask(__name__)
 
-service_version = "bookings-blue"
+service_version = "bookings-green"
 
 with open("{}/bookings.json".format(root_dir()), "r") as f:
     bookings = json.load(f)

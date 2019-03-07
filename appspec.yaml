@@ -1,0 +1,10 @@
+version: 0.0
+Resources:
+  - TargetService:
+      Type: AWS::ECS::Service
+      Properties:
+        TaskDefinition: "arn:aws:ecs:eu-central-1:973072385214:task-definition/bookings"
+        LoadBalancerInfo:
+          ContainerName: "bookings"
+          ContainerPort: 8080
+          
