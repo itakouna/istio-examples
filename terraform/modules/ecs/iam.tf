@@ -32,7 +32,7 @@ resource "aws_iam_role_policy_attachment" "instance" {
 }
 
 resource "aws_iam_instance_profile" "instance" {
-  name = "${var.ecs_cluster_name}-${var.environment}"
+  name = "${var.ecs_cluster_name}-${var.environment}-instance_profile"
   role = "${aws_iam_role.instance.id}"
 }
 
