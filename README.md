@@ -1,17 +1,5 @@
 # Complete terraform ECS cluster provisioning and microservices deployment
 
-## Microservics
-
-```
-├── microservices
-│   ├── README.md
-│   ├── __init__.py
-│   ├── bookings
-│   ├── movies
-│   ├── showtimes
-│   ├── tests
-│   └── users
-```
 ## Terrafrom environments
 ```
 ├── environments
@@ -23,7 +11,6 @@
 │   │   └── services
 │   │       └── bookings
 │   │           ├── configuration.tf
-│   │           ├── inputs.tf
 │   │           ├── main.tf
 │   │           └── tasks-definitions
 │   │               ├── appspec.yaml
@@ -36,7 +23,6 @@
 │       └── services
 │           └── bookings
 │               ├── configuration.tf
-│               ├── inputs.tf
 │               ├── main.tf
 │               └── tasks-definitions
 │                   ├── appspec.yaml
@@ -57,7 +43,6 @@
     │   ├── outputs.tf
     │   ├── template
     │   │   └── user-data.tpl
-    │   └── variables.tf
     ├── services
     │   ├── inputs.tf
     │   ├── main.tf
@@ -66,7 +51,6 @@
         ├── inputs.tf
         ├── main.tf
         ├── outputs.tf
-        └── variables.tf
 ```
 ## Usage
 
