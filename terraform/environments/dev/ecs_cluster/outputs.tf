@@ -47,5 +47,5 @@ output "tags" {
 }
 
 output "environment" {
-  value = "${module.label.environment}"
+  value = "${module.label.stage}"
 }
