@@ -3,6 +3,16 @@ locals {
   environment      = "dev"
   target_type      = "ip"
   health_path      = "/health"
+  team             = "backend developers"
+}
+
+module "label" {
+  source    = "git::https://github.com/cloudposse/terraform-terraform-label.git?ref=master"
+  namespace = "${local.ecs_cluster_name}"
+  stage     = "${local.environment}"
+  name      = "ecs-demo"
+  delimiter = "-"
+  tags      = "${map("Team", "${local.team}")}"
 }
 
 module "vpc" {
@@ -10,9 +20,7 @@ module "vpc" {
   name        = "${local.ecs_cluster_name}"
   environment = "${local.environment}"
 
-  tags = {
-    Name = "${local.ecs_cluster_name}-${local.environment}"
-  }
+  tags = "${module.label.tags}"
 }
 
 module "ecs" {
@@ -25,4 +33,5 @@ module "ecs" {
   security_group_alb_id      = "${module.vpc.security_group_alb_id}"
   target_type                = "${local.target_type}"
   health_path                = "${local.health_path}"
+  tags                       = "${module.label.tags}"
 }

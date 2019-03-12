@@ -41,3 +41,11 @@ output "alb_listener_arn" {
 output "iam_service_role" {
   value = "${module.ecs.iam_service_role}"
 }
+
+output "tags" {
+  value = "${module.label.tags}"
+}
+
+output "environment" {
+  value = "${module.label.environment}"
+}

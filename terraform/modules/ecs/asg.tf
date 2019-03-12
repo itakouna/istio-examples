@@ -10,11 +10,7 @@ resource "aws_autoscaling_group" "ecs" {
   health_check_grace_period = 300
   health_check_type         = "ELB"
 
-  tag {
-    key                 = "Name"
-    value               = "${var.ecs_cluster_name}-${var.environment}"
-    propagate_at_launch = true
-  }
+  tags = ["${var.tags}"]
 
   lifecycle {
     create_before_destroy = true

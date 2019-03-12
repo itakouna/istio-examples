@@ -32,7 +32,12 @@ variable "target_type" {
   type = "string"
 }
 
-variable "health_path"{
-  type = "string"
+variable "health_path" {
+  type    = "string"
   default = "/"
+}
+
+variable "tags" {
+  description = "Tags of ecs cluster"
+  type        = "map"
 }

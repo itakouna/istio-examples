@@ -16,6 +16,8 @@ resource "aws_iam_role" "codedeploy" {
   ]
 }
 EOF
+
+  tags = "${var.tags}"
 }
 
 resource "aws_iam_role_policy_attachment" "codedeploy" {
@@ -38,7 +40,6 @@ resource "aws_codedeploy_deployment_group" "service" {
     enabled = true
     events  = ["DEPLOYMENT_FAILURE"]
   }
-
 
   blue_green_deployment_config {
     deployment_ready_option {
@@ -86,4 +87,3 @@ resource "aws_codedeploy_deployment_config" "service" {
     value = 2
   }
 }
-

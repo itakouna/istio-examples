@@ -1,10 +1,10 @@
 locals {
-  service_name      = "bookings"
-  service_port      = "8080"
-  tasks_definitions = "tasks-definitions/bookings.json"
+  service_name       = "bookings"
+  service_port       = "8080"
+  tasks_definitions  = "tasks-definitions/bookings.json"
   desired_task_count = 1
-  environment       = "dev"
-  compatibilities   = "EC2"
+  environment        = "dev"
+  compatibilities    = "EC2"
 }
 
 module "bookings" {
@@ -26,10 +26,10 @@ module "bookings" {
 }
 
 module "codedeploy" {
-  source       = "../../../../modules/codedeploy"
-  cluster_name = "${data.terraform_remote_state.ecs.ecs_cluster_name}"
-  service_name = "${local.service_name}"
+  source                          = "../../../../modules/codedeploy"
+  cluster_name                    = "${data.terraform_remote_state.ecs.ecs_cluster_name}"
+  service_name                    = "${local.service_name}"
   alb_target_group_name_ecs_green = "${data.terraform_remote_state.ecs.alb_target_group_name_ecs_green}"
   alb_target_group_name_ecs_blue  = "${data.terraform_remote_state.ecs.alb_target_group_name_ecs_blue}"
-  alb_listener_arn               = "${data.terraform_remote_state.ecs.alb_listener_arn}"
+  alb_listener_arn                = "${data.terraform_remote_state.ecs.alb_listener_arn}"
 }

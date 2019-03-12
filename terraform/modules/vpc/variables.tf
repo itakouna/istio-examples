@@ -10,11 +10,6 @@ variable "name" {
   default     = "takouna"
 }
 
-variable "tags" {
-  description = "Tags of ecs cluster"
-  type        = "map"
-}
-
 variable "environment" {
   description = "The name of ecs cluster"
   type        = "string"

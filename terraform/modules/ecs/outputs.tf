@@ -22,14 +22,14 @@ output "alb_target_group_name_ecs_blue" {
   value = "${aws_alb_target_group.ecs-blue.name}"
 }
 
-
 output "alb_listener_arn" {
   value = "${aws_alb_listener.ecs.arn}"
 }
+
 output "ecs_cluster_id" {
   value = "${aws_ecs_cluster.ecs.id}"
 }
 
-output "alb_dns_name"{
-value = "${element(concat(aws_alb.ecs.*.dns_name, list("")), 0)}"
+output "alb_dns_name" {
+  value = "${element(concat(aws_alb.ecs.*.dns_name, list("")), 0)}"
 }

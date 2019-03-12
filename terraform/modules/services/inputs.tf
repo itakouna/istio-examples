@@ -44,7 +44,7 @@ variable "ecs_cluster_id" {
 }
 
 variable "network_mode" {
-  type        = "string"
+  type = "string"
 }
 
 variable "security_group_instance_id" {
@@ -56,15 +56,21 @@ variable "vpc_subnets" {
   description = "The vpc_subnets of vpc"
   type        = "list"
 }
+
 variable "compatibilities" {
-  type        = "string"
+  type = "string"
 }
 
 variable "desired_task_count" {
   type = "string"
 }
 
-variable "scheduling_strategy"{
-  type = "string"
+variable "scheduling_strategy" {
+  type    = "string"
   default = "REPLICA"
+}
+
+variable "tags" {
+  description = "Tags of services"
+  type        = "map"
 }

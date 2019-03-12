@@ -4,15 +4,6 @@ variable "instance_keypair" {
   default     = ""
 }
 
-variable "tags" {
-  description = "Tags of ecs cluster"
-  type        = "map"
-
-  default = {
-    "name" = "my"
-  }
-}
-
 variable "instance_type" {
   description = "The instance type of ecs cluster"
   type        = "string"

@@ -23,10 +23,7 @@ module "vpc" {
   enable_nat_gateway = false
   enable_vpn_gateway = false
 
-  tags = {
-    Terraform   = "true"
-    Environment = "dev"
-  }
+  tags = "${var.tags}"
 }
 
 ###aws_security_group####
@@ -34,22 +31,24 @@ resource "aws_security_group" "alb" {
   name        = "${var.name}-${var.environment}"
   description = "Security Group managed by Terraform"
   vpc_id      = "${module.vpc.vpc_id}"
-  tags        = "${merge(var.tags, map("Name", format("%s-alb", var.name)))}"
 
   lifecycle {
     create_before_destroy = true
   }
+
+  tags = "${var.tags}"
 }
 
 resource "aws_security_group" "instance" {
   name        = "${var.name}-${var.environment}-instance"
   description = "Security Group managed by Terraform"
   vpc_id      = "${module.vpc.vpc_id}"
-  tags        = "${merge(var.tags, map("Name", format("%s-instance", var.name)))}"
 
   lifecycle {
     create_before_destroy = true
   }
+
+  tags = "${var.tags}"
 }
 
 resource "aws_security_group_rule" "instance_ssh" {
@@ -105,11 +104,11 @@ resource "aws_security_group_rule" "instance_inbound_from_alb" {
 }
 
 resource "aws_security_group_rule" "instance_inbound_local" {
-  type                     = "ingress"
-  from_port                = 0
-  to_port                  = 65535
-  protocol                 = "tcp"
-  security_group_id        = "${aws_security_group.instance.id}"
+  type              = "ingress"
+  from_port         = 0
+  to_port           = 65535
+  protocol          = "tcp"
+  security_group_id = "${aws_security_group.instance.id}"
   cidr_blocks       = ["127.0.0.1/32"]
 
   lifecycle {

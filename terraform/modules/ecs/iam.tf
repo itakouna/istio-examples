@@ -24,6 +24,7 @@ resource "aws_iam_role" "instance" {
   name               = "${var.ecs_cluster_name}-${var.environment}-instance-role"
   path               = "/"
   assume_role_policy = "${data.aws_iam_policy_document.instance.json}"
+  tags               = "${var.tags}"
 }
 
 resource "aws_iam_role_policy_attachment" "instance" {

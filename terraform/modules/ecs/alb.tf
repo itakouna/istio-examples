@@ -2,16 +2,17 @@ resource "aws_alb" "ecs" {
   name            = "${var.ecs_cluster_name}-${var.environment}"
   security_groups = ["${var.security_group_alb_id}"]
   subnets         = ["${var.vpc_subnets}"]
+  tags            = "${var.tags}"
 }
 
 resource "aws_alb_target_group" "ecs-green" {
   depends_on = ["aws_alb.ecs"]
 
-  name     = "${var.ecs_cluster_name}-${var.environment}-green"
-  port     = "80"
-  protocol = "HTTP"
+  name        = "${var.ecs_cluster_name}-${var.environment}-green"
+  port        = "80"
+  protocol    = "HTTP"
   target_type = "${var.target_type}"
-  vpc_id   = "${var.vpc_id}"
+  vpc_id      = "${var.vpc_id}"
 
   deregistration_delay = 180
 
@@ -24,16 +25,18 @@ resource "aws_alb_target_group" "ecs-green" {
     protocol            = "HTTP"
     timeout             = "5"
   }
+
+  tags = "${var.tags}"
 }
 
 resource "aws_alb_target_group" "ecs-blue" {
   depends_on = ["aws_alb.ecs"]
 
-  name     = "${var.ecs_cluster_name}-${var.environment}-blue"
-  port     = "80"
-  protocol = "HTTP"
+  name        = "${var.ecs_cluster_name}-${var.environment}-blue"
+  port        = "80"
+  protocol    = "HTTP"
   target_type = "${var.target_type}"
-  vpc_id   = "${var.vpc_id}"
+  vpc_id      = "${var.vpc_id}"
 
   deregistration_delay = 180
 
@@ -46,6 +49,8 @@ resource "aws_alb_target_group" "ecs-blue" {
     protocol            = "HTTP"
     timeout             = "5"
   }
+
+  tags = "${var.tags}"
 }
 
 resource "aws_alb_listener" "ecs" {
