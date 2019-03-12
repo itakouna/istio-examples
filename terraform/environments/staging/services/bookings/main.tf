@@ -3,15 +3,15 @@ locals {
   service_port       = "8080"
   tasks_definitions  = "tasks-definitions/bookings.json"
   desired_task_count = 1
-  environment        = "dev"
   compatibilities    = "EC2"
+  network_mode       = "awsvpc"
 }
 
 module "bookings" {
   source                     = "../../../../modules/services"
   network_mode               = "${local.network_mode}"
   vpc_id                     = "${data.terraform_remote_state.ecs.vpc_id}"
-  environment                = "${local.environment}"
+  environment                = "${data.terraform_remote_state.ecs.environment}"
   service_name               = "${local.service_name}"
   service_port               = "${local.service_port}"
   desired_task_count         = "${local.desired_task_count}"
@@ -23,6 +23,7 @@ module "bookings" {
   security_group_instance_id = "${data.terraform_remote_state.ecs.security_group_instance_id}"
   vpc_subnets                = "${data.terraform_remote_state.ecs.vpc_subnets}"
   compatibilities            = "${local.compatibilities}"
+  tags                       = "${data.terraform_remote_state.ecs.tags}"
 }
 
 module "codedeploy" {
@@ -32,4 +33,5 @@ module "codedeploy" {
   alb_target_group_name_ecs_green = "${data.terraform_remote_state.ecs.alb_target_group_name_ecs_green}"
   alb_target_group_name_ecs_blue  = "${data.terraform_remote_state.ecs.alb_target_group_name_ecs_blue}"
   alb_listener_arn                = "${data.terraform_remote_state.ecs.alb_listener_arn}"
+  tags                            = "${data.terraform_remote_state.ecs.tags}"
 }
