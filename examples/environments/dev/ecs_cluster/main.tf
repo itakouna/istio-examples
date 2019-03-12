@@ -22,7 +22,7 @@ module "label" {
 }
 
 module "vpc" {
-  source      = "../../../modules/vpc"
+  source      = "../../../../modules/vpc"
   name        = "${local.ecs_cluster_name}"
   environment = "${local.environment}"
   cidr        = "10.0.0.0/16"
@@ -43,7 +43,7 @@ module "vpc" {
 }
 
 module "ecs" {
-  source                     = "../../../modules/ecs"
+  source                     = "../../../../modules/ecs"
   ecs_cluster_name           = "${local.ecs_cluster_name}"
   vpc_id                     = "${module.vpc.vpc_id}"
   instance_type              = "${local.instance_type}"

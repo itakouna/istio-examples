@@ -8,7 +8,7 @@ locals {
 }
 
 module "bookings" {
-  source                     = "../../../../modules/services"
+  source                     = "../../../../../modules/services"
   network_mode               = "${local.network_mode}"
   vpc_id                     = "${data.terraform_remote_state.ecs.vpc_id}"
   environment                = "${data.terraform_remote_state.ecs.environment}"
@@ -27,7 +27,7 @@ module "bookings" {
 }
 
 module "codedeploy" {
-  source                          = "../../../../modules/codedeploy"
+  source                          = "../../../../../modules/codedeploy"
   cluster_name                    = "${data.terraform_remote_state.ecs.ecs_cluster_name}"
   service_name                    = "${local.service_name}"
   alb_target_group_name_ecs_green = "${data.terraform_remote_state.ecs.alb_target_group_name_ecs_green}"

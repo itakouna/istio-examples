@@ -70,9 +70,9 @@
 ```
 ## Usage
 
-To create ECS cluster for dev environment, you want go to `terraform/environments/dev/ecs_cluster`:
+To create ECS cluster for dev environment, you want go to `examples/environments/dev/ecs_cluster`:
 ```bash
-cd terraform/environments/dev/ecs_cluster
+cd examples/environments/dev/ecs_cluster
 ```
 To initialize terraform modules:
 ```bash
@@ -87,9 +87,9 @@ To apply terraform:
 AWS_REGION=eu-central-1 AWS_PROFILE=YOUR_AWS_PROFILE terraform apply
 ```
 
-Then, to create services deployments (e.g., bookings), you want go to `terraform/environments/dev/services/bookings`:
+Then, to create services deployments (e.g., bookings), you want go to `examples/environments/dev/services/bookings`:
 ```bash
-cd terraform/environments/dev/services/bookings
+cd examples/environments/dev/services/bookings
 ```
 To initialize terraform modules:
 ```bash
