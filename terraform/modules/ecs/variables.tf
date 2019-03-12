@@ -9,7 +9,7 @@ variable "tags" {
   type        = "map"
 
   default = {
-    "name" = "takouna"
+    "name" = "my"
   }
 }
 

@@ -12,35 +12,94 @@
 │   ├── tests
 │   └── users
 ```
-## Terrafrom
+## Terrafrom environments
 ```
-└── terraform
-    ├── README.md
-    ├── environments
-    │   ├── dev
-    │   └── staging
-    ├── main.tf
-    └── modules
-        ├── ecs
-        ├── services
-        └── vpc
+├── environments
+│   ├── dev
+│   │   ├── ecs_cluster
+│   │   │   ├── configuration.tf
+│   │   │   ├── main.tf
+│   │   │   └── outputs.tf
+│   │   └── services
+│   │       └── bookings
+│   │           ├── configuration.tf
+│   │           ├── inputs.tf
+│   │           ├── main.tf
+│   │           └── tasks-definitions
+│   │               ├── appspec.yaml
+│   │               └── bookings.json
+│   └── staging
+│       ├── ecs_cluster
+│       │   ├── configuration.tf
+│       │   ├── main.tf
+│       │   └── outputs.tf
+│       └── services
+│           └── bookings
+│               ├── configuration.tf
+│               ├── inputs.tf
+│               ├── main.tf
+│               └── tasks-definitions
+│                   ├── appspec.yaml
+│                   └── bookings.json
+```
+## Terrafrom modules
+```
+└── modules
+    ├── codedeploy
+    │   ├── inputs.tf
+    │   └── main.tf
+    ├── ecs
+    │   ├── alb.tf
+    │   ├── asg.tf
+    │   ├── ecs.tf
+    │   ├── iam.tf
+    │   ├── inputs.tf
+    │   ├── outputs.tf
+    │   ├── template
+    │   │   └── user-data.tpl
+    │   └── variables.tf
+    ├── services
+    │   ├── inputs.tf
+    │   ├── main.tf
+    │   └── outputs.tf
+    └── vpc
+        ├── inputs.tf
+        ├── main.tf
+        ├── outputs.tf
+        └── variables.tf
 ```
 ## Usage
 
-To run this example, you need to go to one of environments e.g, dev:
+To create ECS cluster for dev environment, you want go to `terraform/environments/dev/ecs_cluster`:
 ```bash
-cd terraform/environments/dev/
+cd terraform/environments/dev/ecs_cluster
 ```
 To initialize terraform modules:
 ```bash
-terraform init
+AWS_REGION=eu-central-1 AWS_PROFILE=YOUR_AWS_PROFILE terraform init
 ```
 To plan terraform:
 ```bash
-terraform plan
+AWS_REGION=eu-central-1 AWS_PROFILE=YOUR_AWS_PROFILE terraform plan
 ```
 To apply terraform:
 ```bash
-terraform apply
+AWS_REGION=eu-central-1 AWS_PROFILE=YOUR_AWS_PROFILE terraform apply
 ```
 
+Then, to create services deployments (e.g., bookings), you want go to `terraform/environments/dev/services/bookings`:
+```bash
+cd terraform/environments/dev/services/bookings
+```
+To initialize terraform modules:
+```bash
+AWS_REGION=eu-central-1 AWS_PROFILE=YOUR_AWS_PROFILE terraform init
+```
+To plan terraform:
+```bash
+AWS_REGION=eu-central-1 AWS_PROFILE=YOUR_AWS_PROFILE terraform plan
+```
+To apply terraform:
+```bash
+AWS_REGION=eu-central-1 AWS_PROFILE=YOUR_AWS_PROFILE terraform apply
+```
